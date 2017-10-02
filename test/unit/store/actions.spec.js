@@ -14,6 +14,11 @@ describe('Actions', () => {
       actions.addCard({ commit: commitSpy }, payload);
       expect(commitSpy).toHaveBeenCalledWith('addCard', payload);
     });
+
+    it('should persist changes', () => {
+      actions.deleteCard({ commit: commitSpy }, {});
+      expect(commitSpy).toHaveBeenCalledWith('persistCards');
+    });
   });
 
   describe('addPlugin', () => {
@@ -32,6 +37,11 @@ describe('Actions', () => {
       actions.storeCardData({ commit: commitSpy }, payload);
       expect(commitSpy).toHaveBeenCalledWith('storeCardData', payload);
     });
+
+    it('should persist changes', () => {
+      actions.deleteCard({ commit: commitSpy }, {});
+      expect(commitSpy).toHaveBeenCalledWith('persistCards');
+    });
   });
 
   describe('deleteCard', () => {
@@ -40,6 +50,18 @@ describe('Actions', () => {
 
       actions.deleteCard({ commit: commitSpy }, payload);
       expect(commitSpy).toHaveBeenCalledWith('deleteCard', payload);
+    });
+
+    it('should persist changes', () => {
+      actions.deleteCard({ commit: commitSpy }, {});
+      expect(commitSpy).toHaveBeenCalledWith('persistCards');
+    });
+  });
+
+  describe('loadCardsFromStorage', () => {
+    it('should commit proper mutation', () => {
+      actions.loadCardsFromStorage({ commit: commitSpy });
+      expect(commitSpy).toHaveBeenCalledWith('loadCardsFromStorage');
     });
   });
 });

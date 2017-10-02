@@ -96,4 +96,37 @@ describe('Mutations', () => {
       ]);
     });
   });
+
+  describe('persistCards', () => {
+    it('should persist cards to local storage', () => {
+      spyOn(window.localStorage, 'setItem');
+
+      const card1 = {
+        id: 0,
+      };
+      state.cards.push(card1);
+
+      mutations.persistCards(state);
+
+      expect(window.localStorage.setItem)
+        .toHaveBeenCalledWith('cards', JSON.stringify(state.cards))
+    });
+  });
+
+  describe('loadCardsFromStorage', () => {
+    const cards = [
+      {
+        id: 0,
+      },
+    ];
+
+    it('should load cards from local storage', () => {
+      spyOn(window.localStorage, 'getItem')
+        .and.returnValue(JSON.stringify(cards));
+
+      mutations.loadCardsFromStorage(state);
+
+      expect(state.cards).toEqual(cards);
+    });
+  });
 });

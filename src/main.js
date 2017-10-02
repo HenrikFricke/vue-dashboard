@@ -12,6 +12,8 @@ plugins.forEach((plugin) => {
   store.dispatch('addPlugin', { plugin });
 });
 
+store.dispatch('loadCardsFromStorage');
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

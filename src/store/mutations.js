@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import { randomCardBackgroundColor } from './getters';
 
 export function addCard(state, payload) {
@@ -27,4 +29,16 @@ export function deleteCard(state, payload) {
     ...state.cards.slice(0, payload.index),
     ...state.cards.slice(payload.index + 1),
   ];
+}
+
+export function persistCards(state) {
+  window.localStorage.setItem('cards', JSON.stringify(state.cards));
+}
+
+export function loadCardsFromStorage(state) {
+  const cards = window.localStorage.getItem('cards');
+
+  if (cards) {
+    Vue.set(state, 'cards', JSON.parse(cards));
+  }
 }
