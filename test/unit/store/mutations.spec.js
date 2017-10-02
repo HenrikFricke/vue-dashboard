@@ -70,4 +70,30 @@ describe('Mutations', () => {
       expect(state.cards[0].store.key).toEqual('value');
     });
   });
+
+  describe('deleteCard', () => {
+    it('should delete card in array', () => {
+      const card1 = {
+        id: 0,
+      };
+
+      const card2 = {
+        id: 1,
+      };
+
+      const card3 = {
+        id: 2,
+      };
+
+      state.cards.push(card1);
+      state.cards.push(card2);
+      state.cards.push(card3);
+
+      mutations.deleteCard(state, { index: 1 });
+      expect(state.cards).toEqual([
+        card1,
+        card3,
+      ]);
+    });
+  });
 });

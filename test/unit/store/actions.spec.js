@@ -33,4 +33,13 @@ describe('Actions', () => {
       expect(commitSpy).toHaveBeenCalledWith('storeCardData', payload);
     });
   });
+
+  describe('deleteCard', () => {
+    it('should commit proper mutation', () => {
+      const payload = { index: 0 };
+
+      actions.deleteCard({ commit: commitSpy }, payload);
+      expect(commitSpy).toHaveBeenCalledWith('deleteCard', payload);
+    });
+  });
 });

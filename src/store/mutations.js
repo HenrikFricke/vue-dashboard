@@ -21,3 +21,10 @@ export function storeCardData(state, payload) {
     [payload.key]: payload.value,
   };
 }
+
+export function deleteCard(state, payload) {
+  state.cards = [
+    ...state.cards.slice(0, payload.index),
+    ...state.cards.slice(payload.index + 1),
+  ];
+}

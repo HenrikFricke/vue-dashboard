@@ -46,25 +46,34 @@ describe('Dashboard', () => {
     component = mount(Dashboard, { globals: { $store: store } });
   });
 
-  describe('template', () => {
-    describe('cards', () => {
-      let cardElements;
+  describe('cards', () => {
+    let cardElements;
 
-      beforeEach(() => {
-        cardElements = component.find('.card');
-      });
+    beforeEach(() => {
+      cardElements = component.find('.card');
+    });
 
-      it('should render two cards', () => {
-        expect(cardElements.length).toBe(2);
-      });
+    it('should render two cards', () => {
+      expect(cardElements.length).toBe(2);
+    });
 
-      it('should contain component of plugin', () => {
-        expect(cardElements[0].contains(Clock)).toBeTruthy();
-      });
+    it('should contain component of plugin', () => {
+      expect(cardElements[0].contains(Clock)).toBeTruthy();
+    });
 
-      it('should use background color', () => {
-        expect(cardElements[0].hasStyle('background-color', 'red'))
-          .toBeTruthy();
+    it('should use background color', () => {
+      expect(cardElements[0].hasStyle('background-color', 'red'))
+        .toBeTruthy();
+    });
+  });
+
+  describe('toolbar', () => {
+    describe('delete button', () => {
+      it('should call proper action', () => {
+        const deleteButton = component.find('.toolbar-button.delete')[0];
+        deleteButton.trigger('click');
+
+        expect(dispatch).toHaveBeenCalledWith('deleteCard', { index: 0 });
       });
     });
   });

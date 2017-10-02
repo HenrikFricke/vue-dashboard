@@ -9,3 +9,7 @@ export function addPlugin({ commit }, payload) {
 export function storeCardData({ commit }, payload) {
   commit('storeCardData', payload);
 }
+
+export function deleteCard({ commit }, payload) {
+  commit('deleteCard', payload);
+}
