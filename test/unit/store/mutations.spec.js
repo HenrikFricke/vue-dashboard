@@ -1,4 +1,5 @@
 import * as mutations from '../../../src/store/mutations';
+
 import { initialState } from '../../../src/store/state';
 
 describe('Mutations', () => {
@@ -21,6 +22,15 @@ describe('Mutations', () => {
 
   describe('addCard', () => {
     it('should add card', () => {
+      //eslint-disable-next-line
+      const mutationsInject = require('inject-loader!../../../src/store/mutations');
+
+      const addCard = mutationsInject({
+        './getters': {
+          randomCardBackgroundColor: () => 'red',
+        },
+      }).addCard;
+
       const cardInitialState = {
         key: 'value',
       };
@@ -33,11 +43,12 @@ describe('Mutations', () => {
       };
 
       mutations.addPlugin(state, { plugin });
-      mutations.addCard(state, { pluginID: plugin.ID });
+      addCard(state, { pluginID: plugin.ID });
 
       expect(state.cards[0]).toEqual({
         id: plugin.ID,
         store: cardInitialState,
+        backgroundColor: 'red',
       });
     });
   });

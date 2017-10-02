@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-    <div v-for="(card, index) in cards" v-bind:key="index" class="card">
+    <div v-for="(card, index) in cards" v-bind:key="index" class="card" v-bind:style="{ backgroundColor: card.backgroundColor }">
       <component v-bind:is="card.component" v-bind:store="card.store" v-bind:setKey="(key, value) => storeCardData({ index, key, value })"></component>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
   width: 100vw;
   padding: 30px 20px;
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 15px;
   align-content: stretch;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -33,9 +33,9 @@ export default {
   flex-basis: 350px;
   flex: 1;
   min-width: 350px;
-  border: 1px solid #D6D6D6;
   margin: 5px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25), 0 0 -4px rgba(0, 0, 0, 0.25);
+  border: 1px solid #F0F0F0;
+  box-shadow: 0px 0px 4px rgba(245, 245, 245, 0.4), 1px 1px 4px rgba(245, 245, 245, 0.4);
   position: relative;
 }
 </style>

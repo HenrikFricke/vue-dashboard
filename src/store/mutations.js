@@ -1,9 +1,13 @@
+import { randomCardBackgroundColor } from './getters';
+
 export function addCard(state, payload) {
   const plugin = state.plugins.filter(p => p.ID === payload.pluginID)[0];
+  const backgroundColor = randomCardBackgroundColor(state);
 
   state.cards.push({
     id: payload.pluginID,
     store: plugin.initialDataStore(),
+    backgroundColor,
   });
 }
 

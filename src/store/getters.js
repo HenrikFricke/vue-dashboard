@@ -14,3 +14,10 @@ export function cards(state) {
     };
   });
 }
+
+export function randomCardBackgroundColor(state) {
+  const colors = state.cardBackgroundColors;
+  const index = Math.floor((colors.length - 1) * Math.random());
+
+  return colors[index];
+}

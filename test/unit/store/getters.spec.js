@@ -29,4 +29,11 @@ describe('Getters', () => {
       }]);
     });
   });
+
+  describe('randomCardBackgroundColor', () => {
+    it('should return random color of list', () => {
+      const color = getters.randomCardBackgroundColor(state);
+      expect(state.cardBackgroundColors.includes(color)).toBeTruthy();
+    });
+  });
 });

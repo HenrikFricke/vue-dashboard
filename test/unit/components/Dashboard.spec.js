@@ -22,6 +22,7 @@ describe('Dashboard', () => {
         store: {
           key: 'value',
         },
+        backgroundColor: 'red',
       },
       {
         id: 'todo',
@@ -29,6 +30,7 @@ describe('Dashboard', () => {
         store: {
           key: 'value',
         },
+        backgroundColor: 'blue',
       },
     ];
 
@@ -46,14 +48,23 @@ describe('Dashboard', () => {
 
   describe('template', () => {
     describe('cards', () => {
+      let cardElements;
+
+      beforeEach(() => {
+        cardElements = component.find('.card');
+      });
+
       it('should render two cards', () => {
-        expect(component.find('.card').length).toBe(2);
+        expect(cardElements.length).toBe(2);
       });
 
       it('should contain component of plugin', () => {
-        const card = component.find('.card')[0];
+        expect(cardElements[0].contains(Clock)).toBeTruthy();
+      });
 
-        expect(card.contains(Clock)).toBeTruthy();
+      it('should use background color', () => {
+        expect(cardElements[0].hasStyle('background-color', 'red'))
+          .toBeTruthy();
       });
     });
   });

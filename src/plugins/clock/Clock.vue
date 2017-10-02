@@ -41,6 +41,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15vh;
+  font-size: 10vh;
 }
 </style>
