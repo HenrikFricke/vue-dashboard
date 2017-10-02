@@ -1,4 +1,4 @@
-# vue-image-tool
+# Vue.js Dashboard
 
 > A Vue.js project
 
