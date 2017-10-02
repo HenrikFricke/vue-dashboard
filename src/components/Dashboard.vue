@@ -42,7 +42,8 @@ export default {
   position: relative;
 }
 
-.card:hover>.toolbar {
+.card:hover>.toolbar,
+.card:focus>.toolbar {
   transform: scaleY(1);
 }
 

@@ -58,7 +58,8 @@ export default {
   background-color: rgba(199, 199, 199, 0.3);
 }
 
-.menu-item.add:hover .plugins {
+.menu-item.add:hover .plugins,
+.menu-item.add:focus .plugins {
   transform: scaleY(1);
 }
 
@@ -74,5 +75,6 @@ export default {
   transition: transform 300ms;
   transform-origin: top;
   transform: scaleY(0);
+  z-index: 100;
 }
 </style>
