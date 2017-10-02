@@ -1,21 +1,20 @@
 <template>
   <div id="app">
-    <app-header />
-    <div v-for="(card, index) in cards" v-bind:key="index">
-      <component v-bind:is="card.component" v-bind:store="card.store" v-bind:setKey="(key, value) => storeCardData({ index, key, value })"></component>
-    </div>
+    <App-header />
+    <Dashboard />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import AppHeader from './components/AppHeader';
+import Dashboard from './components/Dashboard';
 
 export default {
   name: 'app',
   computed: mapGetters(['cards']),
   methods: mapActions(['storeCardData']),
-  components: { AppHeader },
+  components: { AppHeader, Dashboard },
 };
 </script>
 
