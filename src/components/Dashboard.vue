@@ -36,5 +36,6 @@ export default {
   border: 1px solid #D6D6D6;
   margin: 5px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25), 0 0 -4px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 </style>

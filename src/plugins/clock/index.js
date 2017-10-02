@@ -6,7 +6,5 @@ export const LABEL = 'Clock';
 export const component = Clock;
 
 export function initialDataStore() {
-  return {
-    timezone: 'UTC',
-  };
+  return {};
 }
