@@ -1,12 +1,7 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-import { mount } from 'avoriaz';
-
 import Dashboard from '../../../src/components/Dashboard';
 import Clock from '../../../src/plugins/clock/Clock';
 
-Vue.use(Vuex);
+import getComponent from '../helpers/getComponent';
 
 describe('Dashboard', () => {
   let dispatch;
@@ -34,16 +29,16 @@ describe('Dashboard', () => {
       },
     ];
 
-    store = new Vuex.Store({
+    store = {
       getters: {
         cards: () => cards,
+        isEditMode: () => false,
       },
-    });
+    };
 
     dispatch = jasmine.createSpy('dispatch');
-    store.dispatch = dispatch;
 
-    component = mount(Dashboard, { globals: { $store: store } });
+    component = getComponent(Dashboard, store, dispatch);
   });
 
   describe('cards', () => {
@@ -67,10 +62,25 @@ describe('Dashboard', () => {
     });
   });
 
-  describe('toolbar', () => {
-    describe('delete button', () => {
+  describe('delete button', () => {
+    describe('edit mode disabled', () => {
+      it('should not be present', () => {
+        expect(component.find('.delete').length).toBe(0);
+      });
+    });
+
+    describe('edit mode enabled', () => {
+      beforeEach(() => {
+        store.getters.isEditMode = () => true;
+        component = getComponent(Dashboard, store, dispatch);
+      });
+
+      it('should be present', () => {
+        expect(component.find('.delete').length).toBeGreaterThan(0);
+      });
+
       it('should call proper action', () => {
-        const deleteButton = component.find('.toolbar-button.delete')[0];
+        const deleteButton = component.find('.delete')[0];
         deleteButton.trigger('click');
 
         expect(dispatch).toHaveBeenCalledWith('deleteCard', { index: 0 });

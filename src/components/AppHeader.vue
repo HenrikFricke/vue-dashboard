@@ -1,16 +1,20 @@
 <template>
   <div id="app-header">
     <ul class="menu">
+      <transition name="add">
+        <li class="menu-item add" v-if="isEditMode" v-on:mouseenter="togglePluginList" v-on:touchenter="togglePluginList" v-on:touchleave="togglePluginList" v-on:mouseleave="togglePluginList">
+          Add
+          <transition name="plugins">
+            <ul class="plugins" v-if="isPluginListVisible">
+              <li v-for="plugin in plugins" v-bind:key="plugin.ID" class="pluginItem" v-on:click="() => addCard({ pluginID: plugin.ID })">
+                {{plugin.LABEL}}
+              </li>
+            </ul>
+          </transition>
+        </li>
+      </transition>
       <li class="menu-item edit" v-on:click="toggleEditMode">
         {{!isEditMode ? 'Edit' : 'Done'}}
-      </li>
-      <li class="menu-item add">
-        Add
-        <ul class="plugins">
-          <li v-for="plugin in plugins" v-bind:key="plugin.ID" class="pluginItem" v-on:click="() => addCard({ pluginID: plugin.ID })">
-            {{plugin.LABEL}}
-          </li>
-        </ul>
       </li>
     </ul>
   </div>
@@ -21,8 +25,18 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'app-header',
+  data() {
+    return {
+      isPluginListVisible: false,
+    };
+  },
   computed: mapGetters(['plugins', 'isEditMode']),
-  methods: mapActions(['addCard', 'toggleEditMode']),
+  methods: {
+    ...mapActions(['addCard', 'toggleEditMode']),
+    togglePluginList() {
+      this.isPluginListVisible = !this.isPluginListVisible;
+    },
+  },
 };
 </script>
 
@@ -61,11 +75,6 @@ export default {
   background-color: rgba(199, 199, 199, 0.3);
 }
 
-.menu-item.add:hover .plugins,
-.menu-item.add:focus .plugins {
-  transform: scaleY(1);
-}
-
 .plugins {
   position: absolute;
   top: 100%;
@@ -77,7 +86,28 @@ export default {
   padding: 15px 0 15px 0;
   transition: transform 300ms;
   transform-origin: top;
-  transform: scaleY(0);
   z-index: 100;
+}
+
+.plugins-enter,
+.plugins-leave-to {
+  transform: scaleY(0);
+}
+
+.plugins-enter-to,
+.plugins-leave {
+  transform: scaleY(1);
+}
+
+.add-enter-active,
+.add-leave-active {
+  transition: transform 100ms, opacity 100ms;
+  transform-origin: right;
+}
+
+.add-enter,
+.add-leave-to {
+  transform: scaleX(0.2);
+  opacity: 0.1;
 }
 </style>
