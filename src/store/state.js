@@ -16,6 +16,7 @@ export function initialState() {
       'ivory',
       'burlywood',
     ],
+    isEditMode: false,
   };
 }
 

@@ -36,4 +36,10 @@ describe('Getters', () => {
       expect(state.cardBackgroundColors.includes(color)).toBeTruthy();
     });
   });
+
+  describe('isEditMode', () => {
+    it('should return false', () => {
+      expect(getters.isEditMode(state)).toBeFalsy();
+    });
+  });
 });

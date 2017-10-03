@@ -21,3 +21,7 @@ export function randomCardBackgroundColor(state) {
 
   return colors[index];
 }
+
+export function isEditMode(state) {
+  return state.isEditMode;
+}

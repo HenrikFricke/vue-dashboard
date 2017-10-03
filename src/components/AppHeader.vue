@@ -1,6 +1,9 @@
 <template>
   <div id="app-header">
     <ul class="menu">
+      <li class="menu-item edit" v-on:click="toggleEditMode">
+        {{!isEditMode ? 'Edit' : 'Done'}}
+      </li>
       <li class="menu-item add">
         Add
         <ul class="plugins">
@@ -18,8 +21,8 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'app-header',
-  computed: mapGetters(['plugins']),
-  methods: mapActions(['addCard']),
+  computed: mapGetters(['plugins', 'isEditMode']),
+  methods: mapActions(['addCard', 'toggleEditMode']),
 };
 </script>
 

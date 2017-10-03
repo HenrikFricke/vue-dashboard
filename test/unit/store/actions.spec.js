@@ -64,4 +64,11 @@ describe('Actions', () => {
       expect(commitSpy).toHaveBeenCalledWith('loadCardsFromStorage');
     });
   });
+
+  describe('toggleEditMode', () => {
+    it('should commit proper mutation', () => {
+      actions.toggleEditMode({ commit: commitSpy });
+      expect(commitSpy).toHaveBeenCalledWith('toggleEditMode');
+    });
+  });
 });
