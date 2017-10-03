@@ -2,7 +2,7 @@
   <div id="app-header">
     <ul class="menu">
       <transition name="add">
-        <li class="menu-item add" v-if="isEditMode" v-on:mouseenter="togglePluginList" v-on:touchenter="togglePluginList" v-on:touchleave="togglePluginList" v-on:mouseleave="togglePluginList">
+        <li class="menu-item add" v-if="isEditMode" v-on:click="togglePluginList">
           Add
           <transition name="plugins">
             <ul class="plugins" v-if="isPluginListVisible">
