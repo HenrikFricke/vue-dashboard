@@ -20,3 +20,7 @@ export function deleteCard({ commit }, payload) {
 export function loadCardsFromStorage({ commit }) {
   commit('loadCardsFromStorage');
 }
+
+export function toggleEditMode({ commit }) {
+  commit('toggleEditMode');
+}

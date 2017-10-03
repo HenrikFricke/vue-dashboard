@@ -109,7 +109,7 @@ describe('Mutations', () => {
       mutations.persistCards(state);
 
       expect(window.localStorage.setItem)
-        .toHaveBeenCalledWith('cards', JSON.stringify(state.cards))
+        .toHaveBeenCalledWith('cards', JSON.stringify(state.cards));
     });
   });
 
@@ -127,6 +127,16 @@ describe('Mutations', () => {
       mutations.loadCardsFromStorage(state);
 
       expect(state.cards).toEqual(cards);
+    });
+  });
+
+  describe('toggleEditMode', () => {
+    it('should toggle edit mode', () => {
+      mutations.toggleEditMode(state);
+      expect(state.isEditMode).toBeTruthy();
+
+      mutations.toggleEditMode(state);
+      expect(state.isEditMode).toBeFalsy();
     });
   });
 });

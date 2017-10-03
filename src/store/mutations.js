@@ -42,3 +42,7 @@ export function loadCardsFromStorage(state) {
     Vue.set(state, 'cards', JSON.parse(cards));
   }
 }
+
+export function toggleEditMode(state) {
+  state.isEditMode = !state.isEditMode;
+}
