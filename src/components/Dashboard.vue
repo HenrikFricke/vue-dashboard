@@ -26,7 +26,7 @@ export default {
   width: 100vw;
   padding: 30px 20px;
   box-sizing: border-box;
-  margin-top: 15px;
+  margin-top: 40px;
   align-content: stretch;
   flex-flow: row wrap;
   justify-content: space-around;

@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <App-header />
+    <EditButton />
     <Dashboard />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import AppHeader from './components/AppHeader';
+import EditButton from './components/EditButton';
 import Dashboard from './components/Dashboard';
 
 export default {
   name: 'app',
   computed: mapGetters(['cards']),
   methods: mapActions(['storeCardData']),
-  components: { AppHeader, Dashboard },
+  components: { EditButton, Dashboard },
 };
 </script>
 
