@@ -4,7 +4,6 @@ import Clock from '../../../src/plugins/clock/Clock';
 import getComponent from '../helpers/getComponent';
 
 describe('Dashboard', () => {
-  let dispatch;
   let component;
   let store;
   let cards;
@@ -35,9 +34,7 @@ describe('Dashboard', () => {
       },
     };
 
-    dispatch = jasmine.createSpy('dispatch');
-
-    component = getComponent(Dashboard, store, dispatch);
+    component = getComponent(Dashboard, store);
   });
 
   describe('cards', () => {

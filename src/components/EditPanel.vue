@@ -1,5 +1,7 @@
 <template>
-  <Panel v-bind:isVisible="isEditMode" v-bind:onCloseClick="toggleEditMode" title="Edit" />
+  <Panel v-bind:isVisible="isEditMode" v-bind:onCloseClick="toggleEditMode" title="Edit">
+    <h1>test</h1>
+  </Panel>
 </template>
 
 <script>

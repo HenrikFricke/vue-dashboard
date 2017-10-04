@@ -5,12 +5,10 @@ import { shallow } from 'avoriaz';
 
 Vue.use(Vuex);
 
-export default function getComponent(component, store, dispatch, propsData) {
-  const vuexStore = new Vuex.Store(store);
-
-  if (dispatch) {
-    vuexStore.dispatch = dispatch;
-  }
-
-  return shallow(component, { globals: { $store: vuexStore }, propsData });
+export default function getComponent(component, storeData, options) {
+  const store = new Vuex.Store(storeData);
+  return shallow(component, {
+    store,
+    ...options,
+  });
 }

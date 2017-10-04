@@ -1,15 +1,18 @@
 <template>
   <div>
     <transition name="overlay">
-      <div v-if="isVisible" class="overlay"></div>
+      <div v-show="isVisible" class="overlay"></div>
     </transition>
     <transition name="wrapper">
-      <div class="panel-wrapper" v-if="isVisible">
+      <div class="panel-wrapper" v-show="isVisible">
         <transition name="panel">
-          <div class="panel" v-if="isVisible">
+          <div class="panel" v-show="isVisible">
             <div class="header">
               <h3 class="header-title">{{title}}</h3>
               <span class="header-close" v-on:click="onCloseClick"></span>
+            </div>
+            <div class="body">
+              <slot></slot>
             </div>
           </div>
         </transition>
@@ -135,5 +138,11 @@ export default {
 
 .header-close:after {
   transform: rotate(-45deg);
+}
+
+.body {
+  display: block;
+  height: calc(100vh - 60px);
+  overflow: auto;
 }
 </style>

@@ -3,12 +3,17 @@ import EditButton from '../../../src/components/EditButton';
 import getComponent from '../helpers/getComponent';
 
 describe('EditButton', () => {
-  let dispatch;
   let component;
+  let store;
 
   beforeEach(() => {
-    dispatch = jasmine.createSpy('dispatch');
-    component = getComponent(EditButton, {}, dispatch);
+    store = {
+      actions: {
+        toggleEditMode: jasmine.createSpy(),
+      },
+    };
+
+    component = getComponent(EditButton, store);
   });
 
   it('should have text `Edit`', () => {
@@ -18,6 +23,6 @@ describe('EditButton', () => {
   it('should toggle edit mode on click', () => {
     component.trigger('click');
 
-    expect(dispatch).toHaveBeenCalledWith('toggleEditMode', jasmine.any(Object));
+    expect(store.actions.toggleEditMode).toHaveBeenCalled();
   });
 });
