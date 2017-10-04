@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <EditButton />
+    <EditPanel />
     <Dashboard />
   </div>
 </template>
@@ -10,11 +11,13 @@ import { mapGetters, mapActions } from 'vuex';
 import EditButton from './components/EditButton';
 import Dashboard from './components/Dashboard';
 
+import EditPanel from './components/EditPanel';
+
 export default {
   name: 'app',
   computed: mapGetters(['cards']),
   methods: mapActions(['storeCardData']),
-  components: { EditButton, Dashboard },
+  components: { EditButton, Dashboard, EditPanel },
 };
 </script>
 

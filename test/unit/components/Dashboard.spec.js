@@ -32,7 +32,6 @@ describe('Dashboard', () => {
     store = {
       getters: {
         cards: () => cards,
-        isEditMode: () => false,
       },
     };
 
@@ -59,32 +58,6 @@ describe('Dashboard', () => {
     it('should use background color', () => {
       expect(cardElements[0].hasStyle('background-color', 'red'))
         .toBeTruthy();
-    });
-  });
-
-  describe('delete button', () => {
-    describe('edit mode disabled', () => {
-      it('should not be present', () => {
-        expect(component.find('.delete').length).toBe(0);
-      });
-    });
-
-    describe('edit mode enabled', () => {
-      beforeEach(() => {
-        store.getters.isEditMode = () => true;
-        component = getComponent(Dashboard, store, dispatch);
-      });
-
-      it('should be present', () => {
-        expect(component.find('.delete').length).toBeGreaterThan(0);
-      });
-
-      it('should call proper action', () => {
-        const deleteButton = component.find('.delete')[0];
-        deleteButton.trigger('click');
-
-        expect(dispatch).toHaveBeenCalledWith('deleteCard', { index: 0 });
-      });
     });
   });
 });
