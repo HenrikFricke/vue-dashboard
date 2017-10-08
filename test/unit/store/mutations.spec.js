@@ -42,10 +42,13 @@ describe('Mutations', () => {
         },
       };
 
+      spyOn(Date, 'now').and.returnValue(123);
+
       mutations.addPlugin(state, { plugin });
       addCard(state, { pluginID: plugin.ID });
 
       expect(state.cards[0]).toEqual({
+        cardID: 123,
         id: plugin.ID,
         store: cardInitialState,
         backgroundColor: 'red',

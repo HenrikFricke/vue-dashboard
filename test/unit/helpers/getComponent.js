@@ -5,12 +5,10 @@ import { mount } from 'avoriaz';
 
 Vue.use(Vuex);
 
-export default function getComponent(component, store, dispatch) {
-  const vuexStore = new Vuex.Store(store);
-
-  if (dispatch) {
-    vuexStore.dispatch = dispatch;
-  }
-
-  return mount(component, { globals: { $store: vuexStore } });
+export default function getComponent(component, storeData, options) {
+  const store = new Vuex.Store(storeData);
+  return mount(component, {
+    store,
+    ...options,
+  });
 }
