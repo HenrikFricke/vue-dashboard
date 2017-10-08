@@ -1,6 +1,6 @@
 <template>
   <Panel v-bind:isVisible="isEditMode" v-bind:onCloseClick="toggleEditMode" title="Edit">
-    <List>
+    <List v-if="isEditMode">
       <SelectListItem v-bind:options="plugins" v-bind:clickHandler="addCard">
         Add new card
       </SelectListItem>
