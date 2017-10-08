@@ -10,6 +10,7 @@ export function cards(state) {
 
     return {
       ...card,
+      label: correspondingPlugin.LABEL,
       component: correspondingPlugin.component,
     };
   });

@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-    <div v-for="(card, index) in cards" v-bind:key="index" class="card" v-bind:style="{ backgroundColor: card.backgroundColor }">
+    <div v-for="(card, index) in cards" v-bind:key="card.cardID" class="card" v-bind:style="{ backgroundColor: card.backgroundColor }">
       <component v-bind:is="card.component" v-bind:store="card.store" v-bind:setKey="(key, value) => storeCardData({ index, key, value })"></component>
     </div>
   </div>

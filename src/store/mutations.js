@@ -7,6 +7,7 @@ export function addCard(state, payload) {
   const backgroundColor = randomCardBackgroundColor(state);
 
   state.cards.push({
+    cardID: Date.now(),
     id: payload.pluginID,
     store: plugin.initialDataStore(),
     backgroundColor,

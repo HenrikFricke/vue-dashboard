@@ -12,6 +12,7 @@ describe('Getters', () => {
     it('should return cards with corresponding component', () => {
       const plugin = {
         ID: 'plugin',
+        LABEL: 'Plugin',
         component: () => null,
       };
 
@@ -25,6 +26,7 @@ describe('Getters', () => {
 
       expect(getters.cards(state)).toEqual([{
         ...card,
+        label: plugin.LABEL,
         component: plugin.component,
       }]);
     });
