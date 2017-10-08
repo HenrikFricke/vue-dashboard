@@ -19,7 +19,6 @@ export default {
 <style scoped>
 #dashboard {
   display: flex;
-  height: calc(100vh - 70px);
   width: 100vw;
   padding: 30px 20px;
   box-sizing: border-box;
@@ -27,6 +26,13 @@ export default {
   align-content: stretch;
   flex-flow: row wrap;
   justify-content: space-around;
+  position: relative;
+}
+
+@media (min-width: 400px) {
+  #dashboard {
+    height: calc(100vh - 70px);
+  }
 }
 
 .card {
@@ -39,7 +45,7 @@ export default {
 }
 
 @media (min-width: 400px) {
-  .panel-wrapper {
+  .card {
     min-width: 400px;
     flex-basis: 400px;
   }
