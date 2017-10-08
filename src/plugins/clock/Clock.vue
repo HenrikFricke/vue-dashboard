@@ -37,10 +37,10 @@ export default {
 <style scoped>
 #clock {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 10vh;
+  flex: 1;
 }
 </style>

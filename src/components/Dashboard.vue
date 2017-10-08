@@ -30,12 +30,18 @@ export default {
 }
 
 .card {
-  flex-basis: 350px;
+  display: flex;
   flex: 1;
-  min-width: 350px;
   margin: 5px;
   border: 1px solid #F0F0F0;
   box-shadow: 0px 0px 4px rgba(245, 245, 245, 0.4), 1px 1px 4px rgba(245, 245, 245, 0.4);
   position: relative;
+}
+
+@media (min-width: 400px) {
+  .panel-wrapper {
+    min-width: 400px;
+    flex-basis: 400px;
+  }
 }
 </style>

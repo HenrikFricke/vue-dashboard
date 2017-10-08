@@ -30,14 +30,20 @@ export default {
 
 <style scoped>
 .panel-wrapper {
-  width: 33vw;
-  min-width: 400px;
+  width: 100vw;
   height: 100vh;
   position: absolute;
   overflow: hidden;
   top: 0;
   right: 0;
   z-index: 50;
+}
+
+@media (min-width: 400px) {
+  .panel-wrapper {
+    width: 33vw;
+    min-width: 400px;
+  }
 }
 
 .wrapper-enter-active,

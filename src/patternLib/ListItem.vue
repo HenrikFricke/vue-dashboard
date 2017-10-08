@@ -48,6 +48,7 @@ export default {
   border-bottom: 1px solid #F0F0F0;
   text-align: left;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
   align-items: center;
   position: relative;
 }
@@ -59,20 +60,19 @@ export default {
 .more {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  align-self: stretch;
   margin: 0;
   width: 60px;
-  height: 60px;
   border-left: 1px solid #F0F0F0;
   position: relative;
   background-color: transparent;
   margin: 0;
-  padding: 0;
   border-top: none;
   border-right: none;
   border-bottom: none;
-  padding: 20px 16px;
+  padding: 16px;
   cursor: pointer;
   transition: background-color 300ms;
 }
@@ -91,6 +91,7 @@ export default {
   height: 4px;
   position: relative;
   background-color: #787878;
+  margin-top: 2px;
 }
 
 .options {
