@@ -1,10 +1,10 @@
 <template>
   <li class="listitem">
-    <button class="button" v-on:click="isOptionListOpen = !isOptionListOpen">
+    <button class="button" v-on:click="toggleOptions">
       <slot></slot>
       <span class="arrow" v-bind:class="{ up: isOptionListOpen }"></span>
     </button>
-    <ul class="options" v-if="isOptionListOpen">
+    <ul class="options" v-if="isOptionListOpen" v-on-clickaway="hideOptions">
       <li v-for="option in options" v-bind:key="option.label">
         <button v-on:click="() => selectItem(option.id)">
           {{option.label}}
@@ -15,14 +15,25 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
+
 export default {
   name: 'select-list-item',
+  mixins: [clickaway],
   data() {
     return {
       isOptionListOpen: false,
     };
   },
   methods: {
+    toggleOptions() {
+      this.isOptionListOpen = !this.isOptionListOpen;
+    },
+
+    hideOptions() {
+      this.isOptionListOpen = false;
+    },
+
     selectItem(id) {
       this.isOptionListOpen = false;
       this.clickHandler(id);

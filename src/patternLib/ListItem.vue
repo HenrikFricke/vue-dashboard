@@ -3,12 +3,12 @@
     <span class="label">
       <slot></slot>
     </span>
-    <button class="more" v-on:click="isOptionListOpen = !isOptionListOpen" v-if="options">
+    <button class="more" v-on:click="toggleOptions" v-if="options">
       <span class="square"></span>
       <span class="square"></span>
       <span class="square"></span>
     </button>
-    <ul class="options" v-if="isOptionListOpen">
+    <ul class="options" v-if="isOptionListOpen" v-on-clickaway="hideOptions">
       <li v-for="option in options" v-bind:key="option.label">
         <button v-on:click="option.clickHandler">
           {{option.label}}
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
+
 export default {
   name: 'list-item',
   data() {
@@ -27,6 +29,16 @@ export default {
     };
   },
   props: ['options'],
+  mixins: [clickaway],
+  methods: {
+    toggleOptions() {
+      this.isOptionListOpen = !this.isOptionListOpen;
+    },
+
+    hideOptions() {
+      this.isOptionListOpen = false;
+    },
+  },
 };
 </script>
 
@@ -92,6 +104,7 @@ export default {
   background-color: white;
   list-style: none;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .01);
+  z-index: 20;
 }
 
 .options li {
