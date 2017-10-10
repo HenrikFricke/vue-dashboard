@@ -32,5 +32,7 @@ module.exports = function karmaConfig(config) {
       // i. e.
       stats: 'errors-only',
     },
+
+    singleRun: true,
   });
 };
