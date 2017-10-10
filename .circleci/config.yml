@@ -13,6 +13,7 @@ whitelist: &whitelist
     - node_modules/*
     - package.json
     - README.md
+    - .*
 
 version: 2
 jobs:
