@@ -18,14 +18,13 @@ version: 2
 jobs:
   checkout:
     <<: *defaults
-
     steps:
       - checkout
 
       - restore_cache:
         keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
 
       - run:
         name: Install Dependencies
