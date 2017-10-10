@@ -10,7 +10,7 @@
     "build": "node build/build.js",
     "test:unit": "NODE_ENV=test karma start",
     "test": "yarn run test:unit",
-    "lint": "eslint --ext .js,.vue src test/unit",
+    "lint": "eslint --ext .js,.vue src",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
