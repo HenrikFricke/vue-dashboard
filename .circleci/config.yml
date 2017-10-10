@@ -13,6 +13,8 @@ whitelist: &whitelist
     - node_modules/*
     - package.json
     - README.md
+    - index.html
+    - karma.conf.js
     - .*
 
 version: 2
