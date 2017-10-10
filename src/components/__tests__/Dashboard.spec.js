@@ -1,7 +1,7 @@
-import Dashboard from '../../../src/components/Dashboard';
-import Clock from '../../../src/plugins/clock/Clock';
+import Dashboard from '..//Dashboard';
+import Clock from '../../plugins/clock/Clock';
 
-import getComponent from '../helpers/getComponent';
+import getComponent from '../../testHelpers/getComponent';
 
 describe('Dashboard', () => {
   let component;

@@ -1,4 +1,4 @@
-import state from '../../../src/store/state';
+import state from '../state';
 
 describe('State', () => {
   it('should contain plugins', () => {

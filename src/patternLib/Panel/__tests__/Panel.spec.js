@@ -1,8 +1,7 @@
 import { compileToFunctions } from 'vue-template-compiler';
 
-import Panel from '../../../src/patternLib/Panel';
-
-import getComponent from '../helpers/getComponent';
+import Panel from '../Panel';
+import getComponent from '../../../testHelpers/getComponent';
 
 describe('Panel', () => {
   let Child;

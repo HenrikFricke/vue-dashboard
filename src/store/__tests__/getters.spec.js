@@ -1,5 +1,5 @@
-import * as getters from '../../../src/store/getters';
-import { initialState } from '../../../src/store/state';
+import * as getters from '../getters';
+import { initialState } from '../state';
 
 describe('Getters', () => {
   let state;

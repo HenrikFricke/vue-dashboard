@@ -7,22 +7,22 @@ const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), Chrom
 process.env.CHROME_BIN = revisionInfo.executablePath;
 
 // Karma configuration
-module.exports = function (config) {
+module.exports = function karmaConfig(config) {
   config.set({
     browsers: ['ChromeHeadless'],
 
     files: [
       // all files ending in "_test"
-      { pattern: 'test/unit/*.spec.js', watched: false },
-      { pattern: 'test/unit/**/*.spec.js', watched: false },
+      { pattern: 'src/*.spec.js', watched: false },
+      { pattern: 'src/**/*.spec.js', watched: false },
     ],
 
     frameworks: ['jasmine'],
 
     preprocessors: {
       // add webpack as preprocessor
-      'test/unit/*.spec.js': ['webpack'],
-      'test/unit/**/*.spec.js': ['webpack'],
+      'src/*.spec.js': ['webpack'],
+      'src/**/*.spec.js': ['webpack'],
     },
 
     webpack: webpackConfig,

@@ -1,5 +1,5 @@
-import * as clock from '../../../../src/plugins/clock';
-import Clock from '../../../../src/plugins/clock/Clock';
+import * as clock from '../';
+import Clock from '../Clock';
 
 describe('Plugin: Clock', () => {
   it('should have an ID', () => {

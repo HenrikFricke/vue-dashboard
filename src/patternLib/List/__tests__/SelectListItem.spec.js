@@ -1,10 +1,11 @@
 import { compileToFunctions } from 'vue-template-compiler';
 
-import ListItem from '../../../src/patternLib/ListItem';
-import getComponent from '../helpers/getComponent';
+import SelectListItem from '../SelectListItem';
+import getComponent from '../../../testHelpers/getComponent';
 
-describe('ListItem', () => {
+describe('SelectListItem', () => {
   let Child;
+  let clickHandler;
   let component;
   let options;
   let propsData;
@@ -13,22 +14,29 @@ describe('ListItem', () => {
   beforeEach(() => {
     Child = compileToFunctions('<p>test</p>');
 
+    clickHandler = jasmine.createSpy('clickHandler');
+
     options = [
       {
-        label: 'Settings',
-        clickHandler: jasmine.createSpy('clickHandler'),
+        label: 'Lorem Ipsum',
+        id: '123',
+      },
+      {
+        label: 'Lorem Ipsum 123',
+        id: '456',
       },
     ];
 
     propsData = {
       options,
+      clickHandler,
     };
 
     slots = {
       default: Child,
     };
 
-    component = getComponent(ListItem, {}, { propsData, slots });
+    component = getComponent(SelectListItem, {}, { propsData, slots });
   });
 
   it('should render list (<li />) element', () => {
@@ -39,20 +47,12 @@ describe('ListItem', () => {
     expect(component.contains(Child)).toBeTruthy();
   });
 
-  describe('more button', () => {
-    it('should open options list', () => {
-      const more = component.find('.more')[0];
-      more.trigger('click');
+  describe('butotn', () => {
+    it('should open options list on click', () => {
+      const label = component.find('.button')[0];
+      label.trigger('click');
 
       expect(component.find('.options').length).toBe(1);
-    });
-
-    describe('no options prop given', () => {
-      it('should not be present', () => {
-        component = getComponent(ListItem, {}, { slots });
-
-        expect(component.find('.more').length).toBe(0);
-      });
     });
   });
 
@@ -75,7 +75,14 @@ describe('ListItem', () => {
       const option = component.find('.options > li button')[0];
       option.trigger('click');
 
-      expect(options[0].clickHandler).toHaveBeenCalled();
+      expect(clickHandler).toHaveBeenCalledWith(options[0].id);
+    });
+
+    it('should close options list on click', () => {
+      const option = component.find('.options > li button')[0];
+      option.trigger('click');
+
+      expect(component.find('.options').length).toBe(0);
     });
   });
 });
