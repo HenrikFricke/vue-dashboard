@@ -1,6 +1,6 @@
-import EditButton from '../../../src/components/EditButton';
+import EditButton from '../EditButton';
 
-import getComponent from '../helpers/getComponent';
+import getComponent from '../../testHelpers/getComponent';
 
 describe('EditButton', () => {
   let component;

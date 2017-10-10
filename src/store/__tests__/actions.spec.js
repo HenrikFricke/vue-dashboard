@@ -1,4 +1,4 @@
-import * as actions from '../../../src/store/actions';
+import * as actions from '../actions';
 
 describe('Actions', () => {
   let commitSpy;

@@ -1,8 +1,9 @@
 import EditPanel from '../../../src/components/EditPanel';
-import Panel from '../../../src/patternLib/Panel';
-import ListItem from '../../../src/patternLib/ListItem';
-import SelectListItem from '../../../src/patternLib/SelectListItem';
-import getComponent from '../helpers/getComponent';
+import Panel from '../../patternLib/Panel/Panel';
+import ListItem from '../../patternLib/List/ListItem';
+import SelectListItem from '../../patternLib/List/SelectListItem';
+
+import getComponent from '../../testHelpers/getComponent';
 
 describe('EditPanel', () => {
   let cards;

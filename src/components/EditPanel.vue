@@ -14,10 +14,10 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import Panel from '../patternLib/Panel';
-import List from '../patternLib/List';
-import ListItem from '../patternLib/ListItem';
-import SelectListItem from '../patternLib/SelectListItem';
+import Panel from '../patternLib/Panel/Panel';
+import List from '../patternLib/List/List';
+import ListItem from '../patternLib/List/ListItem';
+import SelectListItem from '../patternLib/List/SelectListItem';
 
 export default {
   name: 'edit-panel',

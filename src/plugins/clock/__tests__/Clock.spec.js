@@ -1,6 +1,6 @@
 import { mount } from 'avoriaz';
 
-import Clock from '../../../../src/plugins/clock/Clock';
+import Clock from '../Clock';
 
 describe('Clock', () => {
   let component;

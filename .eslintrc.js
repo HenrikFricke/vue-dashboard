@@ -8,6 +8,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    jasmine: true,
   },
   extends: 'airbnb-base',
   // required to lint *.vue files
@@ -21,6 +22,12 @@ module.exports = {
         'config': 'build/webpack.base.conf.js'
       }
     }
+  },
+  globals: {
+    expect: true,
+    sinon: true,
+    jasmine: true,
+    spyOn: true
   },
   // add your custom rules here
   'rules': {

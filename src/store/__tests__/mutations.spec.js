@@ -1,6 +1,6 @@
-import * as mutations from '../../../src/store/mutations';
+import * as mutations from '../mutations';
 
-import { initialState } from '../../../src/store/state';
+import { initialState } from '../state';
 
 describe('Mutations', () => {
   let state;

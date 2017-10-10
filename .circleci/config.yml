@@ -1,0 +1,76 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:7.10.0-browsers
+
+whitelist: &whitelist
+  paths:
+    - .storybook/*
+    - build/*
+    - config/*
+    - src/*
+    - static/
+    - node_modules/*
+    - package.json
+    - README.md
+    - index.html
+    - karma.conf.js
+    - .*
+
+version: 2
+jobs:
+  checkout:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+      - save_cache:
+          paths:
+          - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          <<: *whitelist
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Run tests
+          command: yarn test
+
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Lint
+          command: yarn lint
+
+workflows:
+  version: 2
+
+  test:
+    jobs:
+      - checkout
+      - test:
+          requires:
+            - checkout
+      - lint:
+          requires:
+            - checkout
