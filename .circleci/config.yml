@@ -22,42 +22,42 @@ jobs:
       - checkout
 
       - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "package.json" }}
-        - v1-dependencies-
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
 
       - run:
-        name: Install Dependencies
-        command: yarn install
+          name: Install Dependencies
+          command: yarn install
 
       - save_cache:
           paths:
-            - node_modules
+          - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - persist_to_workspace:
-        root: ~/repo
-        <<: *whitelist
+          root: ~/repo
+          <<: *whitelist
 
   test:
     <<: *defaults
     steps:
       - attach_workspace:
-        at: ~/repo
+          at: ~/repo
 
       - run:
-        name: Run tests
-        command: yarn test
+          name: Run tests
+          command: yarn test
 
   lint:
     <<: *defaults
     steps:
       - attach_workspace:
-        at: ~/repo
+          at: ~/repo
 
       - run:
-        name: Lint
-        command: yarn lint
+          name: Lint
+          command: yarn lint
 
 workflows:
   version: 2
