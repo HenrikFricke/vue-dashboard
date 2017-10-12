@@ -1,5 +1,5 @@
 <template>
-  <Panel v-bind:isVisible="isEditMode" v-bind:onCloseClick="toggleEditMode" title="Edit">
+  <Panel v-bind:isVisible="isEditMode" title="Edit">
     <List v-if="isEditMode">
       <SelectListItem v-bind:options="plugins" v-bind:clickHandler="addCard">
         Add new card
@@ -12,12 +12,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-import Panel from '../patternLib/Panel/Panel';
-import List from '../patternLib/List/List';
-import ListItem from '../patternLib/List/ListItem';
-import SelectListItem from '../patternLib/List/SelectListItem';
+import {
+  List,
+  ListItem,
+  Panel,
+  SelectListItem,
+} from '../patternLib';
 
 export default {
   name: 'edit-panel',
@@ -31,7 +33,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['toggleEditMode']),
     cardOptions(index) {
       return [
         {

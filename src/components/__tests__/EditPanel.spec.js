@@ -1,8 +1,10 @@
-import EditPanel from '../../../src/components/EditPanel';
-import Panel from '../../patternLib/Panel/Panel';
-import ListItem from '../../patternLib/List/ListItem';
-import SelectListItem from '../../patternLib/List/SelectListItem';
+import {
+  Panel,
+  ListItem,
+  SelectListItem,
+} from '../../patternLib/';
 
+import EditPanel from '../../../src/components/EditPanel';
 import getComponent from '../../testHelpers/getComponent';
 
 describe('EditPanel', () => {
@@ -35,7 +37,6 @@ describe('EditPanel', () => {
         plugins: () => plugins,
       },
       actions: {
-        toggleEditMode: jasmine.createSpy(),
         deleteCard: jasmine.createSpy(),
         addCard: jasmine.createSpy('addCard'),
       },
@@ -46,12 +47,10 @@ describe('EditPanel', () => {
 
   it('should pass proper props to Panel component', () => {
     const panel = component.find(Panel)[0];
+    const panelProps = panel.vm.$options.propsData;
 
-    panel.getProp('onCloseClick')();
-
-    expect(panel.getProp('isVisible')).toBeTruthy();
-    expect(panel.getProp('title')).toEqual('Edit');
-    expect(store.actions.toggleEditMode).toHaveBeenCalled();
+    expect(panelProps.isVisible).toBeTruthy();
+    expect(panelProps.title).toEqual('Edit');
   });
 
   describe('add new card dialog', () => {

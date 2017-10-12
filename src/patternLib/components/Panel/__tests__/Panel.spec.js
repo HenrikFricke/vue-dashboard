@@ -1,7 +1,7 @@
 import { compileToFunctions } from 'vue-template-compiler';
 
 import Panel from '../Panel';
-import getComponent from '../../../testHelpers/getComponent';
+import getComponent from '../../../../testHelpers/getComponent';
 
 describe('Panel', () => {
   let Child;
@@ -35,23 +35,13 @@ describe('Panel', () => {
       component = getComponent(Panel, {}, { propsData, slots });
     });
 
-    it('should render overlay', () => {
-      expect(component.find('.overlay').length).toBe(1);
-    });
-
     it('should render panel', () => {
       expect(component.find('.panel').length).toBe(1);
     });
 
     it('should render proper header title', () => {
-      expect(component.find('.header-title')[0].text().trim())
+      expect(component.find('header')[0].text().trim())
         .toEqual(propsData.title);
-    });
-
-    it('should call onCloseClick on click to close button', () => {
-      component.find('.header-close')[0].trigger('click');
-
-      expect(propsData.onCloseClick).toHaveBeenCalled();
     });
 
     it('should pass children to slot', () => {
@@ -62,16 +52,8 @@ describe('Panel', () => {
   });
 
   describe('is not visible', () => {
-    it('should not render overlay', () => {
-      const overlay = component.find('.overlay')[0];
-
-      expect(overlay.element.style.display).toEqual('none');
-    });
-
     it('should not render panel', () => {
-      const panel = component.find('.panel')[0];
-
-      expect(panel.element.style.display).toEqual('none');
+      expect(component.find('.panel').length).toBe(0);
     });
   });
 });

@@ -1,9 +1,11 @@
 import { storiesOf } from '@storybook/vue';
 import { action } from '@storybook/addon-actions';
 
-import List from './List';
-import ListItem from './ListItem';
-import SelectListItem from './SelectListItem';
+import {
+  List,
+  ListItem,
+  SelectListItem,
+} from '../../';
 
 storiesOf('List', module)
   .add('with ListItem', () => ({

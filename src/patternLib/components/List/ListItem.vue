@@ -53,8 +53,13 @@ export default {
   position: relative;
 }
 
+.listitem:last-child {
+  border-bottom: none;
+}
+
 .label {
-  padding: 16px;
+  padding: 12px 16px;
+  font-size: 14px;
 }
 
 .more {
@@ -65,20 +70,13 @@ export default {
   align-self: stretch;
   margin: 0;
   width: 60px;
-  border-left: 1px solid #F0F0F0;
   position: relative;
   background-color: transparent;
   margin: 0;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
+  border: none;
   padding: 16px;
   cursor: pointer;
   transition: background-color 300ms;
-}
-
-.more:hover {
-  background-color: rgba(0, 0, 0, .05);
 }
 
 .more:focus {

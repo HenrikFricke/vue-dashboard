@@ -1,7 +1,7 @@
 import { compileToFunctions } from 'vue-template-compiler';
 
 import ListItem from '../ListItem';
-import getComponent from '../../../testHelpers/getComponent';
+import getComponent from '../../../../testHelpers/getComponent';
 
 describe('ListItem', () => {
   let Child;
