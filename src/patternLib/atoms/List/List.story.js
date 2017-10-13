@@ -25,13 +25,13 @@ storiesOf('Atoms/List', module)
   .add('clickable', () => ({
     template: `
       <pl-list>
-        <pl-list-item :clickHandler="action('list item')">Item 1</pl-list-item>
-        <pl-list-item :clickHandler="action('list item')">Item 2</pl-list-item>
-        <pl-list-item :clickHandler="action('list item')">Item 3</pl-list-item>
+        <pl-list-item @click="action" clickable>Item 1</pl-list-item>
+        <pl-list-item @click="action" clickable>Item 2</pl-list-item>
+        <pl-list-item @click="action" clickable>Item 3</pl-list-item>
       </pl-list>
     `,
     methods: {
-      action,
+      action: action('list item'),
     },
   }))
 

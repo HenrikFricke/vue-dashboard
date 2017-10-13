@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="pl-list">
     <slot></slot>
   </ul>
 </template>
@@ -10,8 +10,8 @@ export default {
 };
 </script>
 
-<style scoped>
-ul {
+<style>
+.pl-list {
   list-style: none;
   margin: 0;
   padding: 0;

@@ -1,5 +1,5 @@
 <template>
-  <li class="listitem" :class="classes" v-on:click="handleClick">
+  <li class="listitem" :class="classes" @click="handleClick">
     <span class="label">
       <slot></slot>
     </span>
@@ -17,29 +17,30 @@ export default {
       type: Boolean,
       default: false,
     },
-    clickHandler: {
-      type: Function,
+    clickable: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
     return {
       classes: {
         'listitem--small': this.small,
-        'listitem--clickable': this.clickHandler,
+        'listitem--clickable': this.clickable,
       },
     };
   },
   methods: {
     handleClick(e) {
-      if (this.clickHandler) {
-        this.clickHandler(e);
+      if (this.clickable) {
+        this.$emit('click', e);
       }
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../../style/index";
 
 .listitem {

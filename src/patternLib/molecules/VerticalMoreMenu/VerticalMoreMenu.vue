@@ -1,12 +1,12 @@
 <template>
-  <div class="vertical-more-menu">
-    <pl-icon-button :clickHandler="toggleMenu">
+  <div class="pl-vertical-more-menu">
+    <pl-icon-button @click="toggleMenu">
       more_vert
     </pl-icon-button>
-    <transition name="menu">
+    <transition name="pl-vertical-more-menu">
       <pl-popover v-on-clickaway="toggleMenu" v-if="isOpen" :customStyle="popoverStyling" :elevation="popoverElevation" bottomright :offsetX="popoveroffsetX" :offsetY="popoveroffsetY">
         <pl-list>
-          <pl-list-item v-for="(item, index) in items" :key="index" :clickHandler="item.clickHandler" small>
+          <pl-list-item v-for="(item, index) in items" :key="index" @click="item.clickHandler" small>
             {{item.label}}
           </pl-list-item>
         </pl-list>
@@ -48,27 +48,27 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../../style/index";
 
-.vertical-more-menu {
+.pl-vertical-more-menu {
   display: inline;
 }
 
-.menu-enter-active,
-.menu-leave-active {
+.pl-vertical-more-menu-enter-active,
+.pl-vertical-more-menu-leave-active {
   transition: transform $transition-time-xxs, opacity $transition-time-xxs;
   transform-origin: top right;
 }
 
-.menu-enter,
-.menu-leave-to {
+.pl-vertical-more-menu-enter,
+.pl-vertical-more-menu-leave-to {
   transform: scale(0.6);
   opacity: 0;
 }
 
-.menu-leave,
-.menu-enter-to {
+.pl-vertical-more-menu-leave,
+.pl-vertical-more-menu-enter-to {
   transform: scale(1);
   opacity: 1;
 }

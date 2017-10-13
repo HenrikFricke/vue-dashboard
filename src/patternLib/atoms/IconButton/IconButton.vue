@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="clickHandler">
+  <button class="pl-icon-button" @click="$emit('click', $event)">
     <i class="material-icons">
       <slot />
     </i>
@@ -9,19 +9,13 @@
 <script>
 export default {
   name: 'pl-icon-button',
-  props: {
-    clickHandler: {
-      type: Function,
-      default: () => null,
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../style/index";
 
-button {
+.pl-icon-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
