@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'panel',
+  name: 'pl-panel',
   props: ['isVisible', 'title'],
 };
 </script>
