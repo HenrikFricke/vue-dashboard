@@ -6,7 +6,7 @@
     <transition name="pl-vertical-more-menu">
       <pl-popover v-on-clickaway="toggleMenu" v-if="isOpen" :customStyle="popoverStyling" :elevation="popoverElevation" bottomright :offsetX="popoveroffsetX" :offsetY="popoveroffsetY">
         <pl-list>
-          <pl-list-item v-for="(item, index) in items" :key="index" @click="item.clickHandler" small>
+          <pl-list-item v-for="(item, index) in items" :key="index" @click="item.clickHandler" clickable small>
             {{item.label}}
           </pl-list-item>
         </pl-list>

@@ -65,8 +65,8 @@ export default {
   border-bottom: none;
 
   & .label {
-    padding: 8px 16px;
-    font-size: 12px;
+    padding: $base*2 $base*4;
+    font-size: $font-size-s;
   }
 }
 
@@ -75,8 +75,8 @@ export default {
 }
 
 .label {
-  padding: 12px 16px;
-  font-size: 14px;
+  padding: $base*3 $base*4;
+  font-size: $font-size-base;
 }
 
 .right {
