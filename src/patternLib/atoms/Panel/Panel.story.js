@@ -1,50 +1,73 @@
 import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
 
 storiesOf('Atoms/Panel', module)
   .add('default', () => ({
     template: `
-      <div :style="{ 'max-width': '350px', 'margin': '0 auto' }">
-        <button v-on:click="togglePanel">Toggle panel</button>
-        <div :style="{ 'max-width': '350px', 'position': 'relative', 'margin-top': '30px' }">
-          <pl-panel :title="title" :isVisible="isVisible">
-            <pl-list>
-              <pl-list-item>
-                Option A
-                <pl-vertical-more-menu :items="items" slot="right" />
-              </pl-list-item>
-              <pl-list-item>
-                Option B
-                <pl-vertical-more-menu :items="items" slot="right" />
-              </pl-list-item>
-              <pl-list-item>
-                Option C
-                <pl-vertical-more-menu :items="items" slot="right" />
-              </pl-list-item>
-            </pl-list>
-          </pl-panel>
-        </div>
+      <div :style="{ 'max-width': '350px' }">
+        <pl-panel :show-back-button="activeView !== 'main'" @back="setView('main')">
+          <span slot="header">{{title}}</span>
+          <pl-list v-if="activeView === 'main'">
+            <pl-list-item>
+              Option A
+              <pl-vertical-more-menu :items="items" slot="right" />
+            </pl-list-item>
+            <pl-list-item>
+              Option B
+              <pl-vertical-more-menu :items="items" slot="right" />
+            </pl-list-item>
+            <pl-list-item>
+              Option C
+              <pl-vertical-more-menu :items="items" slot="right" />
+            </pl-list-item>
+          </pl-list>
+          <p :style="style" v-if="activeView === 'settings'">
+            Settings
+          </p>
+          <p :style="style" v-if="activeView === 'delete'">
+            Delete
+          </p>
+        </pl-panel>
       </div>
     `,
     data() {
       return {
-        title: 'My Panel',
-        isVisible: true,
+        title: 'Panel',
+        style: {
+          padding: '16px',
+        },
+        activeView: 'main',
         items: [
           {
             label: 'Settings',
-            clickHandler: action('settings clicked'),
+            clickHandler: () => this.setView('settings'),
           },
           {
             label: 'Delete',
-            clickHandler: action('delete clicked'),
+            clickHandler: () => this.setView('delete'),
           },
         ],
       };
     },
     methods: {
-      togglePanel() {
-        this.isVisible = !this.isVisible;
+      showMain() {
+        this.subOpen = false;
+      },
+      setView(view) {
+        switch (view) {
+          case 'settings': {
+            this.title = 'Settings';
+            break;
+          }
+          case 'delete': {
+            this.title = 'Delete';
+            break;
+          }
+          default: {
+            this.title = 'Panel';
+          }
+        }
+
+        this.activeView = view;
       },
     },
   }));

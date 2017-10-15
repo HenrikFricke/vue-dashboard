@@ -1,69 +1,53 @@
 <template>
-  <transition name="panel">
-    <div class="panel" v-if="isVisible">
-      <header class="header">
-        {{title}}
-      </header>
-      <main class="body">
-        <slot></slot>
-      </main>
-    </div>
-  </transition>
+  <div class="pl-panel">
+    <header class="pl-panel__header">
+      <pl-icon-button class="pl-panel__back" small v-if="showBackButton" @click="$emit('back', $event)">
+        arrow_back
+      </pl-icon-button>
+      <slot name="header"></slot>
+    </header>
+    <main class="pl-panel__body">
+      <slot></slot>
+    </main>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'pl-panel',
-  props: ['isVisible', 'title'],
+  props: {
+    showBackButton: {
+      type: Boolean,
+      default: false,
+    },
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@material/elevation/mdc-elevation";
+<style lang="scss">
 @import "../../style/index";
 
-.panel {
+.pl-panel {
   width: 100%;
   background-color: $white;
   border: 1px solid $grey-500;
-  box-sizing: border-box;
-  @include mdc-elevation(8);
 }
 
-.panel-enter-active {
-  transition: transform $transition-time-m cubic-bezier(.05, .76, 0, 1.54), opacity $transition-time-xs;
-}
-
-.panel-leave-active {
-  transition: transform $transition-time-xs, opacity $transition-time-xs;
-}
-
-.panel-leave-to,
-.panel-enter {
-  transform: scale(0.9);
-  opacity: 0;
-}
-
-.panel-enter-to,
-.panel-leave {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.header {
+.pl-panel__header {
   background-color: $grey-500;
   color: $grey-800;
-  padding: 16px;
+  padding: $base*3 $base*4;
+  font-size: $font-size-m;
+  display: flex;
+  align-items: center;
 }
 
-.header-title {
-  margin: 0;
-  padding: 16px;
-}
-
-.body {
+.pl-panel__body {
   display: block;
-  height: calc(100% - 60px);
   overflow: auto;
+}
+
+.pl-panel__back {
+  margin-right: $base*2;
 }
 </style>

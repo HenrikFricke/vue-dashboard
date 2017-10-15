@@ -1,5 +1,5 @@
 <template>
-  <button class="pl-icon-button" @click="$emit('click', $event)">
+  <button :class="classes" @click="$emit('click', $event)">
     <i class="material-icons">
       <slot />
     </i>
@@ -9,6 +9,20 @@
 <script>
 export default {
   name: 'pl-icon-button',
+  props: {
+    small: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      classes: {
+        'pl-icon-button': true,
+        'pl-icon-button--small': this.small,
+      },
+    };
+  },
 };
 </script>
 
@@ -19,9 +33,15 @@ export default {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
+  color: inherit;
 
   &:focus {
     outline: none;
   }
+}
+
+.pl-icon-button--small .material-icons {
+  font-size: $font-size-xl;
 }
 </style>

@@ -36,7 +36,7 @@ export default {
       },
       popoverElevation: 4,
       popoverCorner: 'bottom-right',
-      popoveroffsetX: 20,
+      popoveroffsetX: 12,
       popoveroffsetY: -5,
     };
   },

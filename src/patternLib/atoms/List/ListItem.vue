@@ -80,6 +80,6 @@ export default {
 }
 
 .right {
-  margin-right: 0;
+  margin-right: $base;
 }
 </style>
