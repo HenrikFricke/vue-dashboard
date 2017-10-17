@@ -28,9 +28,11 @@ export default {
 @import "../../style/index";
 
 .pl-panel {
-  width: 100%;
+  width: inherit;
   background-color: $white;
   border: 1px solid $grey-500;
+  max-height: inherit;
+  height: inherit;
 }
 
 .pl-panel__header {
@@ -45,6 +47,7 @@ export default {
 .pl-panel__body {
   display: block;
   overflow: auto;
+  max-height: calc(100% - 46px);
 }
 
 .pl-panel__back {

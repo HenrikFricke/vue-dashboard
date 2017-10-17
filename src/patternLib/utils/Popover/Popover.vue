@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="elevationClass" v-bind:style="customStyle">
+  <div :class="classes" :style="customStyle">
     <slot />
   </div>
 </template>
@@ -8,6 +8,7 @@
 export default {
   name: 'pl-popover',
   props: {
+    customClasses: Object,
     customStyle: Object,
     elevation: {
       type: Number,
@@ -26,10 +27,14 @@ export default {
       default: 0,
     },
   },
-  computed: {
-    elevationClass() {
-      return `elevation--${this.elevation}`;
-    },
+  data() {
+    return {
+      classes: {
+        'pl-popover': true,
+        [`pl-popover--elevation-${this.elevation}`]: true,
+        ...this.customClasses,
+      }
+    }
   },
   mounted() {
     if (this.$parent) {
@@ -55,17 +60,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@material/elevation/mdc-elevation";
 
-div {
+.pl-popover {
   position: absolute;
   z-index: 50;
   display: none;
 }
 
 @for $i from 0 through 24 {
-  .elevation--#{$i} {
+  .pl-popover--elevation-#{$i} {
     @include mdc-elevation($i);
   }
 }
