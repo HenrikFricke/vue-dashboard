@@ -37,13 +37,6 @@ export default {
   },
   methods: {
     cardOptions(index) {
-      console.log([
-        {
-          label: 'Delete',
-          clickHandler: () => this.$store.dispatch('deleteCard', { index }),
-        },
-      ]);
-
       return [
         {
           label: 'Delete',
