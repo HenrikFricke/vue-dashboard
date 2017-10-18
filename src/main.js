@@ -5,7 +5,9 @@ import App from './App';
 import store from './store/';
 
 import plugins from './plugins';
+import patternLib from './patternLib';
 
+Vue.use(patternLib);
 Vue.config.productionTip = false;
 
 plugins.forEach((plugin) => {
