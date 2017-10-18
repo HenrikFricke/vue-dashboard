@@ -30,7 +30,7 @@ export default {
       popoverClasses: {
         'pl-button-with-panel__popover': true,
       },
-    }
+    };
   },
   methods: {
     togglePanel() {

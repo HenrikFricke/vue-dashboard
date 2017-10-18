@@ -33,8 +33,8 @@ export default {
         'pl-popover': true,
         [`pl-popover--elevation-${this.elevation}`]: true,
         ...this.customClasses,
-      }
-    }
+      },
+    };
   },
   mounted() {
     if (this.$parent) {

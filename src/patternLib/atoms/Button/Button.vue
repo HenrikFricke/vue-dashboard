@@ -11,7 +11,7 @@ export default {
     small: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data() {
     return {
