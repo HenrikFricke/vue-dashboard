@@ -1,81 +1,90 @@
 import { compileToFunctions } from 'vue-template-compiler';
+import { mount } from 'avoriaz';
 
 import ListItem from '../ListItem';
-import getComponent from '../../../../testHelpers/getComponent';
 
 describe('ListItem', () => {
-  let Child;
+  let DefaultChild;
+  let RightChild;
   let component;
-  let options;
-  let propsData;
   let slots;
 
   beforeEach(() => {
-    Child = compileToFunctions('<p>test</p>');
-
-    options = [
-      {
-        label: 'Settings',
-        clickHandler: jasmine.createSpy('clickHandler'),
-      },
-    ];
-
-    propsData = {
-      options,
-    };
+    DefaultChild = compileToFunctions('<p>default</p>');
+    RightChild = compileToFunctions('<p>right</p>');
 
     slots = {
-      default: Child,
+      default: DefaultChild,
+      right: RightChild,
     };
 
-    component = getComponent(ListItem, {}, { propsData, slots });
+    component = mount(ListItem, { slots });
   });
 
-  it('should render list (<li />) element', () => {
-    expect(component.is('li')).toBeTruthy();
-  });
-
-  it('should render default slot', () => {
-    expect(component.contains(Child)).toBeTruthy();
-  });
-
-  describe('more button', () => {
-    it('should open options list', () => {
-      const more = component.find('.more')[0];
-      more.trigger('click');
-
-      expect(component.find('.options').length).toBe(1);
+  describe('general', () => {
+    it('should render list (<li />) element', () => {
+      expect(component.is('li')).toBeTruthy();
     });
 
-    describe('no options prop given', () => {
-      it('should not be present', () => {
-        component = getComponent(ListItem, {}, { slots });
+    it('should not emit click event', () => {
+      const listener = jasmine.createSpy('listener');
 
-        expect(component.find('.more').length).toBe(0);
+      component.vm.$on('click', listener);
+      component.trigger('click');
+
+      expect(listener).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('slots', () => {
+    it('should render default slot', () => {
+      expect(component.find('.pl-list-item__label')[0].contains(DefaultChild)).toBeTruthy();
+    });
+
+    it('should render right slot', () => {
+      expect(component.find('.pl-list-item__right')[0].contains(RightChild)).toBeTruthy();
+    });
+  });
+
+  describe('small variation', () => {
+    it('should add modifier class', () => {
+      component = mount(ListItem, {
+        slots,
+        propsData: {
+          small: true,
+        },
       });
+
+      expect(component.hasClass('pl-list-item--small')).toBeTruthy();
     });
   });
 
-  describe('options', () => {
-    beforeEach(() => {
-      component.setData({ isOptionListOpen: true });
+  describe('clickable active', () => {
+    it('should add modifier class', () => {
+      component = mount(ListItem, {
+        slots,
+        propsData: {
+          clickable: true,
+        },
+      });
+
+      expect(component.hasClass('pl-list-item--clickable')).toBeTruthy();
     });
 
-    it('should render passed options', () => {
-      expect(component.find('.options > li').length).toBe(options.length);
-    });
+    it('should emit click event', () => {
+      const listener = jasmine.createSpy('listener');
 
-    it('should render label', () => {
-      const option = component.find('.options > li button')[0];
+      component = mount(ListItem, {
+        slots,
+        propsData: {
+          clickable: true,
+        },
+      });
 
-      expect(option.text().trim()).toEqual(options[0].label);
-    });
+      component.vm.$on('click', listener);
+      component.trigger('click');
 
-    it('should have click handler', () => {
-      const option = component.find('.options > li button')[0];
-      option.trigger('click');
-
-      expect(options[0].clickHandler).toHaveBeenCalled();
+      expect(listener).toHaveBeenCalled();
     });
   });
 });

@@ -1,9 +1,9 @@
 <template>
-  <li class="listitem" :class="classes" @click="handleClick">
-    <span class="label">
+  <li class="pl-list-item" :class="classes" @click="handleClick">
+    <span class="pl-list-item__label">
       <slot></slot>
     </span>
-    <span class="right">
+    <span class="pl-list-item__right">
       <slot name="right"></slot>
     </span>
   </li>
@@ -25,8 +25,8 @@ export default {
   data() {
     return {
       classes: {
-        'listitem--small': this.small,
-        'listitem--clickable': this.clickable,
+        'pl-list-item--small': this.small,
+        'pl-list-item--clickable': this.clickable,
       },
     };
   },
@@ -43,7 +43,7 @@ export default {
 <style lang="scss">
 @import "../../style/index";
 
-.listitem {
+.pl-list-item {
   display: flex;
   border-bottom: 1px solid #F0F0F0;
   justify-content: space-between;
@@ -52,7 +52,7 @@ export default {
   align-items: center;
 }
 
-.listitem--clickable {
+.pl-list-item--clickable {
   cursor: pointer;
   transition: background-color $transition-time-m;
 
@@ -61,25 +61,25 @@ export default {
   }
 }
 
-.listitem--small {
+.pl-list-item--small {
   border-bottom: none;
 
-  & .label {
+  & .pl-list-item__label {
     padding: $base*2 $base*4;
     font-size: $font-size-s;
   }
 }
 
-.listitem:last-child {
+.pl-list-item:last-child {
   border-bottom: none;
 }
 
-.label {
+.pl-list-item__label {
   padding: $base*3 $base*4;
   font-size: $font-size-base;
 }
 
-.right {
+.pl-list-item__right {
   margin-right: $base;
 }
 </style>
