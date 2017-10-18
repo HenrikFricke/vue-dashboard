@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <EditButton />
-    <EditPanel />
+    <Edit />
     <Dashboard />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import EditButton from './components/EditButton';
-import Dashboard from './components/Dashboard';
 
-import EditPanel from './components/EditPanel';
+import Dashboard from './components/Dashboard';
+import Edit from './components/Edit';
 
 export default {
   name: 'app',
   computed: mapGetters(['cards']),
   methods: mapActions(['storeCardData']),
-  components: { EditButton, Dashboard, EditPanel },
+  components: { Edit, Dashboard },
 };
 </script>
 
@@ -26,7 +24,7 @@ body {
   margin: 0;
 }
 
-#app {
+body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

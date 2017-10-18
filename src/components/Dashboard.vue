@@ -16,13 +16,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../patternLib/style/index";
+
 #dashboard {
   display: flex;
   width: 100vw;
-  padding: 30px 20px;
+  padding: $base*8 $base*3;
   box-sizing: border-box;
-  margin-top: 40px;
+  margin-top: $base*10;
   align-content: stretch;
   flex-flow: row wrap;
   justify-content: space-around;

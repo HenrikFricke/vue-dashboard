@@ -4,24 +4,16 @@
       <slot name="button"></slot>
     </pl-button>
     <transition @enter="checkPanelHeight" name="pl-button-with-panel">
-      <pl-popover ref="panel" v-on-clickaway="togglePanel" v-if="isPanelOpen" :custom-classes="popoverClasses" :elevation="panelElevation" :offsetY="panelOffsetY" bottomright>
-        <pl-panel>
-          <span slot="header">
-            <slot name="panel-header"></slot>
-          </span>
-          <slot name="panel-body"></slot>
-        </pl-panel>
+      <pl-popover ref="panel" v-if="isPanelOpen" :custom-classes="popoverClasses" :elevation="panelElevation" :offsetY="panelOffsetY" bottomright>
+        <slot />
       </pl-popover>
     </transition>
   </div>
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway';
-
 export default {
   name: 'pl-button-with-panel',
-  mixins: [clickaway],
   data() {
     return {
       isPanelOpen: false,
