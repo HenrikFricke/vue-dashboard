@@ -1,59 +1,57 @@
 import { compileToFunctions } from 'vue-template-compiler';
+import { mount } from 'avoriaz';
 
 import Panel from '../Panel';
-import getComponent from '../../../../testHelpers/getComponent';
 
 describe('Panel', () => {
-  let Child;
+  let DefaultChild;
+  let HeaderChild;
   let component;
-  let propsData;
   let slots;
 
   beforeEach(() => {
-    Child = compileToFunctions('<p>test</p>');
-
-    propsData = {
-      isVisible: false,
-      onCloseClick: jasmine.createSpy('onCloseClick'),
-      title: 'Title',
-    };
+    DefaultChild = compileToFunctions('<p>default</p>');
+    HeaderChild = compileToFunctions('<p>header</p>');
 
     slots = {
-      default: Child,
+      default: DefaultChild,
+      header: HeaderChild,
     };
 
-    component = getComponent(Panel, {}, { propsData, slots });
+    component = mount(Panel, { slots });
   });
 
-  describe('is visible', () => {
+  describe('slots', () => {
+    it('should render default slot', () => {
+      expect(component.find('.pl-panel__body')[0].contains(DefaultChild)).toBeTruthy();
+    });
+
+    it('should render header slot', () => {
+      expect(component.find('.pl-panel__header')[0].contains(HeaderChild)).toBeTruthy();
+    });
+  });
+
+  describe('back button', () => {
     beforeEach(() => {
-      propsData = {
-        ...propsData,
-        isVisible: true,
-      };
-
-      component = getComponent(Panel, {}, { propsData, slots });
+      component = mount(Panel, {
+        slots,
+        propsData: {
+          showBackButton: true,
+        },
+      });
     });
 
-    it('should render panel', () => {
-      expect(component.find('.panel').length).toBe(1);
+    it('should be present', () => {
+      expect(component.find('.pl-panel__back').length).toBe(1);
     });
 
-    it('should render proper header title', () => {
-      expect(component.find('header')[0].text().trim())
-        .toEqual(propsData.title);
-    });
+    it('should emit event', () => {
+      const listener = jasmine.createSpy('listener');
 
-    it('should pass children to slot', () => {
-      const body = component.find('.body')[0];
+      component.vm.$on('back', listener);
+      component.find('.pl-panel__back')[0].trigger('click');
 
-      expect(body.contains(Child)).toBeTruthy();
-    });
-  });
-
-  describe('is not visible', () => {
-    it('should not render panel', () => {
-      expect(component.find('.panel').length).toBe(0);
+      expect(listener).toHaveBeenCalled();
     });
   });
 });
