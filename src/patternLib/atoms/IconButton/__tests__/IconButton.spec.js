@@ -34,17 +34,4 @@ describe('IconButton', () => {
 
     expect(listener).toHaveBeenCalled();
   });
-
-  describe('small variation', () => {
-    it('should add modifier class', () => {
-      component = mount(IconButton, {
-        slots,
-        propsData: {
-          small: true,
-        },
-      });
-
-      expect(component.hasClass('pl-icon-button--small')).toBeTruthy();
-    });
-  });
 });
