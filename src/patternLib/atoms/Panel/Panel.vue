@@ -42,12 +42,14 @@ export default {
   font-size: $font-size-m;
   display: flex;
   align-items: center;
+  height: $base*12;
+  box-sizing: border-box;
 }
 
 .pl-panel__body {
   display: block;
   overflow: auto;
-  max-height: calc(100% - 46px);
+  max-height: calc(100% - #{$base*12});
 }
 
 .pl-panel__back {

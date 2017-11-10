@@ -62,6 +62,7 @@ export default {
   width: $base*83;
   box-sizing: border-box;
   text-align: right;
+  z-index: 10;
 }
 
 .pl-button-with-panel__popover {
