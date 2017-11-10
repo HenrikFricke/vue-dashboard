@@ -1,17 +1,17 @@
 <template>
-  <ul>
+  <ul class="pl-list">
     <slot></slot>
   </ul>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'pl-list',
 };
 </script>
 
-<style scoped>
-ul {
+<style>
+.pl-list {
   list-style: none;
   margin: 0;
   padding: 0;

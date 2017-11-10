@@ -15,6 +15,7 @@ whitelist: &whitelist
     - README.md
     - index.html
     - karma.conf.js
+    - test-suite.js
     - .*
 
 version: 2
