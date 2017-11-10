@@ -5,4 +5,10 @@ storiesOf('Atoms/Icon', module)
     template: `
       <pl-icon>code</pl-icon>
     `,
+  }))
+
+  .add('small', () => ({
+    template: `
+      <pl-icon small>code</pl-icon>
+    `,
   }));

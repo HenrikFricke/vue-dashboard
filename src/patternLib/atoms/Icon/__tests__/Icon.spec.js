@@ -25,4 +25,17 @@ describe('Icon', () => {
   it('should render default slot', () => {
     expect(component.contains(DefaultChild)).toBeTruthy();
   });
+
+  describe('small variation', () => {
+    it('should add modifier class', () => {
+      component = mount(Icon, {
+        slots,
+        propsData: {
+          small: true,
+        },
+      });
+
+      expect(component.hasClass('pl-icon--small')).toBeTruthy();
+    });
+  });
 });
